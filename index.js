@@ -23,7 +23,8 @@ var MilightRF24Controller = function (options) {
 	this._opened = false;
 	
 	this._serialPort = new SerialPort(options.port, {
-	  baudrate: 115200
+		baudRate: 115200,
+		autoOpen: false
 	});
 	
 	this._emitter = new events.EventEmitter();
@@ -104,7 +105,8 @@ MilightRF24Controller.prototype.open = function () {
 	var self = this;
 	
 	self._serialPort.on("open", function () {
-		self._serialPort.on('data', function(data) {
+		self._parser = self._serialPort.pipe(new Delimiter({ delimiter: '\r\n', encoding: 'ascii' }))
+		self._parser.on('data', function(data) {
 			if(data.length == 22) {
 				self._emitter.emit("dataReceived", data, self);
 			}

@@ -24,7 +24,7 @@
     "nrf24"
   ],
   "dependencies": {
-    "serialport": "~2.0.6"
+    "serialport": "^6.2.2"
   },
   "maintainers": [
     {
