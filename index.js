@@ -1,6 +1,6 @@
 var events = require('events');
-var SerialPort = require("serialport").SerialPort
-
+var SerialPort = require("serialport").SerialPort;
+var Delimiter = SerialPort.parsers.Delimiter;
 //
 // Class MilightRF24Controller
 //
